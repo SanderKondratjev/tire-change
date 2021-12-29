@@ -21,7 +21,14 @@ public class tireChangeController {
     }
 
     @GetMapping("tire-change/london-booking-times")
-    public String getFromUrl() {
+    public String getFromLondonBookingTimes() {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject("http://localhost:9003/api/v1/tire-change-times/available?from=2006-01-02&until=2030-01-02",
+                String.class);
+    }
+
+    @GetMapping("tire-change/manchester-booking-times")
+    public String getFromManchesterBookingTimes() {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject("http://localhost:9003/api/v1/tire-change-times/available?from=2006-01-02&until=2030-01-02",
                 String.class);
