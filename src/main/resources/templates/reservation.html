@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+
+  <title>Booking</title>
+</head>
+<style>
+  .my-footer {
+    height: 3em;
+    padding: 2em;
+    background-color: #10101c;
+    margin-top: 1.5em;
+    color: #ffffff;
+    font-size: 100%;
+
+  }
+
+  .room-image {
+    max-width: 50%;
+  }
+
+  .red-text {
+    color: red;
+  }
+
+  .notie-container {
+    box-shadow: none;
+  }
+
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tire-change.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="reservation.html">Book Now</a>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<!-- a container is split to 12 cols-->
+<div class="container">
+
+  <div class="row">
+    <h1 class="text-center mt-5 em-4"><strong>Search for availability</strong></h1>
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+
+
+      <!--where to send the form and what to do with it-->
+      <form action="reservation.html" method="get" novalidate class="needs-validation">
+
+
+
+        <div class="row">
+
+          <div class="col">
+
+            <div class="row" id="reservation-dates">
+              <div class="col">
+                <label>
+                  <input required class="form-control" type="text" name="start" placeholder="Booking time">
+                </label>
+              </div>
+              <div class="col" >
+                <label style="visibility:hidden">
+                  <input required class="form-control" type="text" name="end" placeholder="Test">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <button type="submit" class="btn btn-primary mb-2 mt-4">Search Availability</button>
+      </form>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <p id="myParagraph1">When You are ready book Your tire-change time.</p>
+      <p>
+        <button id="colorButton" class="btn btn-outline-secondary">Book now</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div class="row my-footer">
+  <div class="col">
+    SMIT
+  </div>
+  <div class="col">
+    homework
+  </div>
+  <div class="col">
+    tire-change booking system
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+  let attention = Prompt();
+
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    let forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+              }, false)
+            })
+  })()
+
+  const elem = document.getElementById('reservation-dates');
+  const rangepicker = new DateRangePicker(elem, {
+    // ...options
+    format: "yyyy-mm-dd"
+  });
+
+
+  function notifyModal(tile, text, icon, confirmationButtonText) {
+    Swal.fire({
+      title: tile,
+      html: text,
+      icon: icon,
+      confirmButtonText: confirmationButtonText
+    })
+  }
+
+  //sweetalert prompts for user feedback
+  function Prompt() {
+    let toast = function (c) {
+      const {
+        msg = "",
+        icon = "success",
+        position = "top-end",
+      } = c;
+      const Toast = Swal.mixin({
+        toast: true,
+        title: msg,
+        position: position,
+        icon: icon,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({})
+    }
+    let success = function (c) {
+      const {
+        msg = "",
+        title = "",
+        footer = "",
+      } = c;
+
+      Swal.fire({
+        icon: 'success',
+        title: title,
+        text: msg,
+        footer: footer,
+      })
+    }
+    let error = function (c) {
+      const {
+        msg = "",
+        title = "",
+        footer = "",
+      } = c;
+
+      Swal.fire({
+        icon: 'error',
+        title: title,
+        text: msg,
+        footer: footer,
+      })
+    }
+    return {
+      toast: toast,
+      success: success,
+      error: error,
+    }
+  }
+
+  document.getElementById("colorButton").addEventListener("click", function () {
+    attention.error({msg: "Time booked"});
+
+  })
+
+</script>
+
+</body>
+</html>
