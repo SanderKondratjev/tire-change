@@ -8,6 +8,7 @@
   - Open this project, for example IntelliJ IDEA.
   - Run TireChangeApplication file (make sure PostgreSQL is installed).
   - Run ```src/main/resources/templates/index.html``` in terminal to open homepage. (Navigate, and check booking times(note: TireChangeApplication must be running to see times) or go to index.html file and open in browser.
+  - Also possible to check booking times: [Link to Manchester booking times](http://localhost:8080/manchester-booking-times) and [Link to London booking times](http://localhost:8080/london-booking-times)
   - Note: Homepage is not finished because of the booking times.
   
 # How project was made
